@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Iftar Schedule
+{% endblock %}
+
+{% block menu %}
+    <button class="btn btn-outline-danger" type="button" onclick="window.location.href = '/list';">Schedule</button>
+    <button class="btn btn-sm btn-outline-primary" type="button" onclick="window.location.href = '/';">Host Iftar
+    </button>
+{% endblock %}
+
+
+{% block content %}
+    <h2>Iftar Schedule:</h2>
+    <p>Once your request has been confirmed, the status will be updated in the schedule below.</p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>DATE</th>
+            <th>HOST</th>
+            <th>STATUS</th>
+        </tr>
+
+        </thead>
+        <tbody>
+        {% for need in needs_list %}
+            <tr>
+
+
+                <td>     {{ need.need__description }} </td>
+                <td>{{ need.name }}  </td>
+                <td>
+                    {% if need.is_approved %}
+                        Confirmed
+                    {% else %}
+                        Pending Confirmation
+                    {% endif %}
+                </td>
+
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
